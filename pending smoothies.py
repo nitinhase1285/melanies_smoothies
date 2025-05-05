@@ -22,14 +22,14 @@ session = get_active_session()
 snow_df = session.table("smoothies.public.orders").filter(col("ORDER_FILLED") == 0)
 my_dataframe = snow_df.to_pandas()
 
-if my_dataframe:
+if not my_dataframe.empty:
         
         st.dataframe(data=my_dataframe, use_container_width=True)
         editable_df = st.data_editor(my_dataframe)
         
         submitted = st.button('Submit')
         
-        if submitted:
+        if st.button('Submit'):
           
         
             og_dataset = session.table("smoothies.public.orders")
