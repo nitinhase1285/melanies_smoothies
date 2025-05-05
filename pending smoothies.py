@@ -27,7 +27,7 @@ if not my_dataframe.empty:
         st.dataframe(data=my_dataframe, use_container_width=True)
         editable_df = st.data_editor(my_dataframe)
         
-        submitted = st.button('Submit')
+        #submitted = st.button('Submit')
         
         if st.button('Submit'):
           
