@@ -3,9 +3,11 @@
 import streamlit as st
 from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col, when_matched
+from snowflake.snowpark import Session  # Make sure this import is at the top
 cnx = st.connection("snowflake")
 session = cnx.session()
 #Session._set_active_session(session)
+
 
 # Write directly to the app
 st.title(":cup_with_straw: Pending Smoothie Orders  :cup_with_straw:")
@@ -16,7 +18,9 @@ st.write ("""Orders that need to filled.""")
 
 
 session = get_active_session()
-my_dataframe = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
+# my_dataframe = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
+snow_df = session.table("smoothies.public.orders").filter(col("ORDER_FILLED") == 0)
+my_dataframe = snow_df.to_pandas()
 
 if my_dataframe:
         
