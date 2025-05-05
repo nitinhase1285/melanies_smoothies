@@ -17,7 +17,7 @@ st.write ("""Orders that need to filled.""")
  #                    ('Banana','Strawberries','Peaches'))
 
 
-session = get_active_session()
+#session = get_active_session()
 # my_dataframe = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
 snow_df = session.table("smoothies.public.orders").filter(col("ORDER_FILLED") == 0)
 my_dataframe = snow_df.to_pandas()
